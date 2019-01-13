@@ -91,8 +91,8 @@ def submit():
             	num_act += 1
             	continue
 
-            html += "<p style='background-color:DodgerBlue;font-size:30px'> "
-            html += str(i - permgap) + "." + query_res['businesses'][i-1-gap]['name'] + " " #['location']['display_address'])
+            html += "<div style='background-color:Black;color:white;font-size:30px'> "
+            html += str(i - permgap) + ". " + query_res['businesses'][i-1-gap]['name'] + " " #['location']['display_address'])
             html += "</p>"
             html += "Location: <br>"
             for j in range(len(query_res['businesses'][i-1-gap]['location']['display_address'])):
@@ -104,7 +104,7 @@ def submit():
             html += "Travel Time: " + str(directions_result[0]['legs'][0]['duration']['text']) + " "
             html += "Distance: " + str(directions_result[0]['legs'][0]['distance']['text'])
             html += "<br>"
-            html += "<br>"
+            html += "<br>" + "</div>" + "<br>"
 
             gap = 0
             i += 1
