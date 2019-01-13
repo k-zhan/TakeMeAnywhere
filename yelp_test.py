@@ -91,18 +91,18 @@ def submit():
             	num_act += 1
             	continue
 
+            w = str(query_res['businesses'][i-1-gap]["url"])
             html += "<div style='background-color:Black;color:white;font-size:30px'> "
-            html += str(i - permgap) + ". " + query_res['businesses'][i-1-gap]['name'] + " " #['location']['display_address'])
-            html += "</p>"
+            html += "<a href=" +"'"+w + "'>"  + str(i - permgap) + ". " + query_res['businesses'][i-1-gap]['name'] + " " #['location']['display_address'])
+            html += "</a><br>"
+            html += "<h2>"+"<img src=" + "'" + str(query_res['businesses'][i-1-gap]["image_url"]) + "'" + "align='left'" + "width='280'" + "height='280'>" + "</h2>" 
             html += "Location: <br>"
             for j in range(len(query_res['businesses'][i-1-gap]['location']['display_address'])):
                 html += (query_res['businesses'][i-1-gap]['location']['display_address'][j]) + "<br>"
             # html += query_res['businesses'][i]['location']['display_address']
             html += "<br>"
-            
-			
-            html += "Travel Time: " + str(directions_result[0]['legs'][0]['duration']['text']) + " "
-            html += "Distance: " + str(directions_result[0]['legs'][0]['distance']['text'])
+            html += "Travel Time: " + "<span style='color:#FF0000'>" + str(directions_result[0]['legs'][0]['duration']['text']) + "</span>"+ "<br>"
+            html += "Distance: " + "<span style='color:#FF0000'>" + str(directions_result[0]['legs'][0]['distance']['text']) + "</span>"
             html += "<br>"
             html += "<br>" + "</div>" + "<br>"
 
