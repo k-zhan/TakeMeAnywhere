@@ -6,9 +6,7 @@ import datetime
 
 yelp_api = YelpAPI(api_key)
 
-from flask import Flask
-
-from flask import request
+from flask import Flask,request,render_template
 
 import geocoder
 g = geocoder.ip('me')
@@ -30,9 +28,11 @@ def home():
                  <input type="submit" value="Submit"><br>
             </form>'''
 
-
-@app.route('/', methods=['GET', 'POST']) #allow both GET and POST requests
+@app.route("/")
 def home():
+    return render_template("home.html")
+@app.route('/',methods=['POST']) #allow both GET and POST requests
+def submit():
     #loc = request.form['loc']
     #query = request.form['query']
     #query_res = yelp_api.search_query(term = query, location = loc, limit=5)
@@ -55,14 +55,13 @@ def home():
         html = ''
 		
         for i in range(num_act):
-            html += "Activity: "
+            html += "<p style='background-color:DodgerBlue;font-size:30px'> "
             html += query_res['businesses'][i]['name'] #['location']['display_address'])
-            html += "<br>"
+            html += "</p>"
             html += "Location: <br>"
             for j in range(len(query_res['businesses'][i]['location']['display_address'])):
                 html += (query_res['businesses'][i]['location']['display_address'][j]) + "<br>"
             # html += query_res['businesses'][i]['location']['display_address']
-            html += "<br>"
             html += "<br>"
             time_counter = datetime.now()
 			
@@ -90,7 +89,7 @@ def home():
                                                     )
             print(directions_result[0]['legs'][0]['duration']['text'])
             print(directions_result[0]['legs'][0]['distance']['text'])
-            html += "Travel Time: " + str(directions_result[0]['legs'][0]['duration']['text'])
+            html += "Travel Time: " + str(directions_result[0]['legs'][0]['duration']['text']) + " "
             html += "Distance: " + str(directions_result[0]['legs'][0]['distance']['text'])
             html += "<br>"
             html += "<br>"
@@ -100,16 +99,6 @@ def home():
 
 
         return html 
-		#+ '''<h1>Result: {}</h1>
-         #         <h1>The framework value is:</h1>'''.format(query_res)
-
-    return '''<form method="POST">
-                  Location: <input type="text" name="loc"><br>
-                  Number of Activities: <input type="text" name="num_act"><br>
-				  Number of Hours Spent Out: <input type="text" name="num_hrs"><br>
-                  
-                  <input type="submit" value="Submit"><br>
-              </form>'''
 
 if __name__ == "__main__":
     app.run(debug=True)
