@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Flask Tutorial</title>
+  </head>
+  <style>
+  body{
+      background-color:slateblue;
+        text-align: center;
+        font-size: 20px
+    }
+  input{
+    height: 25px;
+    width: 200px;
+    font-size:24px;
+  }
+  select{
+    height: 30px;
+    width: 200px;
+    font-size:24px;
+  }
+  </style>
+  <form method="POST">
+    <h1>Events Generation!</h1>
+      <p> Number Of Hours Out?</p>
+      <input name = "num_hrs"><br>
+      <p> How Many Attractions To Visit?</p>
+      <input name = "num_act"><br>
+      <input type="checkbox" name="vehicle1" value="Bike">Do You Want To Eat?
+      <p>Location</p>
+      <input name = "loc"><br>
+      <p>Pricing</p>
+  <select method = "POST",id = "myList">
+    <option value = "1">$</option>
+    <option value = "2">$$</option>
+    <option value = "3">$$$</option>
+    <option value = "4">$$$$</option>
+  </select><br>
+  <input type= "submit">
+  </form>
+  </body>
+</html>
+
+
