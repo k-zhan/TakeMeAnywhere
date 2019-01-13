@@ -17,22 +17,21 @@ gmaps = googlemaps.Client(key='AIzaSyD4E6MEwHgTLqIuYvhnenmMxpAVXM2Rzds')
 
 app = Flask(__name__)
 
-#''' @app.route("/", methods=['GET', 'POST'])
-#def home():
-#    #if request.method == 'POST':
+''' @app.route("/", methods=['GET', 'POST'])
+def home():
+    #if request.method == 'POST':
     #    return 'Submitted form.' '''
 
-#'''   return ''' '''<form method="POST">
- #                Search: <input type="text" name="search"><br>
- #                Location: <input type="text" name="location"><br>
- #                <input type="submit" value="Submit"><br>
- #           </form>'''
+'''   return ''' '''<form method="POST">
+                 Search: <input type="text" name="search"><br>
+                 Location: <input type="text" name="location"><br>
+                 <input type="submit" value="Submit"><br>
+            </form>'''
 
 @app.route("/")
 def home():
     return render_template("home.html")
-
-@app.route('/', methods=['POST']) #allow both GET and POST requests
+@app.route('/',methods=['POST']) #allow both GET and POST requests
 def submit():
     #loc = request.form['loc']
     #query = request.form['query']
@@ -51,63 +50,47 @@ def submit():
 
         #num_rest = request.form['num_rest']
         num_act = int(request.form['num_act'])
-        query_res = yelp_api.search_query(term = "activities", location = loc, limit=50) # max value for limit
-        #print(query_res['businesses'])# [20]) #['coordinates'])
+        query_res = yelp_api.search_query(term = "activities", location = loc, limit= num_act)
         result_string = ''
         html = ''
-        i = 1
-        gap = 0
-        permgap = 0
-        time_counter = datetime.now()
-
-        while (i <= num_act):
-        # Now compute the distances:
-            if (i == num_act):
-                #print("last:", i-1 - gap)
-                directions_result = gmaps.directions(query_res['businesses'][i-1-gap]['coordinates'],
+		
+        for i in range(num_act):
+            html += "<p style='background-color:DodgerBlue;font-size:30px'> "
+            html += query_res['businesses'][i]['name'] + " " #['location']['display_address'])
+            html += "</p>"
+            html += "Location: <br>"
+            for j in range(len(query_res['businesses'][i]['location']['display_address'])):
+                html += (query_res['businesses'][i]['location']['display_address'][j]) + "<br>"
+            # html += query_res['businesses'][i]['location']['display_address']
+            html += "<br>"
+            time_counter = datetime.now()
+			
+            # Now compute the distances:
+            if (i == num_act - 1):
+               directions_result = gmaps.directions(query_res['businesses'][i]['coordinates'],
 				                                     g.latlng,
                                                     mode="driving",
+                                                    avoid="ferries",
                                                     departure_time=time_counter
                                                     )
-            elif (i == 1):
+            elif (i == 0):
                 directions_result = gmaps.directions(g.latlng,
-                                                     query_res['businesses'][i - 1]['coordinates'],
+                                                     query_res['businesses'][i]['coordinates'],
                                                      mode="driving",
+                                                     avoid="ferries",
                                                      departure_time=time_counter
                                                      )
             else:
-                #print("prev:", i - 1 - gap)
-                #print("cur:", i)
-                directions_result = gmaps.directions(query_res['businesses'][i - 1 - gap]['coordinates'],
-									                 query_res['businesses'][i]['coordinates'],
+                directions_result = gmaps.directions(query_res['businesses'][i]['coordinates'],
+									                 query_res['businesses'][i+1]['coordinates'],
                                                      mode="driving",
+                                                     avoid="ferries",
                                                      departure_time=time_counter
                                                     )
-            if (len(directions_result) == 0):
-            	#print("bad: ", query_res['businesses'][i]['name'])
-            	gap += 1
-            	permgap += 1
-            	i += 1
-            	num_act += 1
-            	continue
-
-            html += "<p style='background-color:DodgerBlue;font-size:30px'> "
-            html += str(i - permgap) + "." + query_res['businesses'][i-1-gap]['name'] + " " #['location']['display_address'])
-            html += "</p>"
-            html += "Location: <br>"
-            for j in range(len(query_res['businesses'][i-1-gap]['location']['display_address'])):
-                html += (query_res['businesses'][i-1-gap]['location']['display_address'][j]) + "<br>"
-            # html += query_res['businesses'][i]['location']['display_address']
-            html += "<br>"
-            
-			
             html += "Travel Time: " + str(directions_result[0]['legs'][0]['duration']['text']) + " "
             html += "Distance: " + str(directions_result[0]['legs'][0]['distance']['text'])
             html += "<br>"
             html += "<br>"
-
-            gap = 0
-            i += 1
             # for k in range(len(directions_result)):
                 # html += directions_result[i]
                 # print(directions_result[k])
@@ -119,14 +102,15 @@ if __name__ == "__main__":
     app.run(debug=True)
 
 # Get current location
-#import geocoder
-#g = geocoder.ip('me')
-#print(g.latlng)
+import geocoder
+g = geocoder.ip('me')
+print(g.latlng)
 
 # Search from current location
-#response_cur = yelp_api.search_query(term='activities', location= loctemp)
-#print(response_cur['businesses'][20]['coordinates'])
-#print(response_cur['businesses'][0])
+response_cur = yelp_api.search_query(term='attraction', latitude = g.latlng[0],
+        longitude = g.latlng[1], limit=2)
+print(response_cur['businesses'][0]['location']['display_address'])
+print(response_cur['businesses'][0])
 
-#response1 = yelp_api.search_query(term='ice cream', location='m1s 4h8', limit=2)
-#print(response1['businesses'][0]['location']['display_address'])
+response1 = yelp_api.search_query(term='ice cream', location='m1s 4h8', limit=2)
+print(response1['businesses'][0]['location']['display_address'])

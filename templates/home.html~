@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <title>TakeMeAnywhere</title>
+  </head>
+  <style>
+  body{
+      background-color:slateblue;
+        text-align: center;
+        font-size: 20px
+    }
+  input{
+    height: 25px;
+    width: 200px;
+    font-size:24px;
+  }
+  select{
+    height: 30px;
+    width: 200px;
+    font-size:24px;
+  }
+  </style>
+  <form method="POST">
+    <h1 >TakeMeAnywhere</h1><br>
+      <h2> Number Of Hours Out?</h2>
+      <select method = "POST",id = "hrList">
+        <!-- only want options from 3 to 14 -->
+          <!-- <option value = "1">1</option>
+          <option value = "2">2</option> -->
+          <option value = "3">3</option>
+          <option value = "4">4</option>
+          <option value = "5">5</option>
+          <option value = "6">6</option>
+          <option value = "7">7</option>
+          <option value = "8">8</option>
+          <option value = "9">9</option>
+          <option value = "10">10</option>
+          <option value = "11">11</option>
+          <option value = "12">12</option>
+          <option value = "13">13</option>
+          <option value = "13">14</option>
+        </select>
+      <h2> How Many Attractions To Visit?</h2>
+      <input name = "num_act"><br><br>
+      <h2>Location</h2>
+      <input value="Toronto, ON" name = "loc"><br>
+      <h2>Food Pricing</h2>
+  <select method = "POST",id = "myList">
+    <option value = "1">$</option>
+    <option value = "2">$$</option>
+    <option value = "3">$$$</option>
+    <option value = "4">$$$$</option>
+  </select><br><br>
+  <input type= "submit">
+  </form>
+  </body>
+</html>
+
+
