@@ -98,7 +98,7 @@ def submit():
 
         w = str(query_res['businesses'][attr_counter]["url"])
         html += "<div style='background-color:Black;color:white;font-size:30px'> "
-        html += "<a href=" +"'"+w + "'>"  + str(i) + ". " + query_res['businesses'][attr_counter]['name'] + " " #['location']['display_address'])
+        html += "<a href=" + "'"+ w + "'" + "style='color:white;'" + ">"  + str(i) + ". " + query_res['businesses'][attr_counter]['name'] + " " #['location']['display_address'])
         html += "</a><br>"
         html += "<h2>"+"<img src=" + "'" + str(query_res['businesses'][attr_counter]["image_url"]) + "'" + "align='left'" + "width='280'" + "height='280'>" + "</h2>" 
         html += "Location: <br>"
@@ -148,7 +148,7 @@ def submit():
 
                         w = str(food_query['businesses'][food_counter]["url"])
                         html += "<div style='background-color:Black;color:white;font-size:30px'> "
-                        html += "<a href=" +"'"+w + "'>"  + str(i) + ". " + food_query['businesses'][food_counter]['name'] + " " #['location']['display_address'])
+                        html += "<a href=" + "'"+ w + "'" + "style='color:white;'" + ">"  + str(i) + ". " + food_query['businesses'][food_counter]['name'] + " " #['location']['display_address'])
                         html += "</a><br>"
                         html += "<h2>"+"<img src=" + "'" + str(food_query['businesses'][food_counter]["image_url"]) + "'" + "align='left'" + "width='280'" + "height='280'>" + "</h2>" 
                         html += "Location: <br>"
@@ -189,7 +189,7 @@ def submit():
 
                         w = str(query_res['businesses'][attr_counter]["url"])
                         html += "<div style='background-color:Black;color:white;font-size:30px'> "
-                        html += "<a href=" +"'"+w + "'>"  + str(i) + ". " + query_res['businesses'][attr_counter]['name'] + " " #['location']['display_address'])
+                        html += "<a href=" + "'"+ w + "'" + "style='color:white;'" + ">"  + str(i) + ". "+ query_res['businesses'][attr_counter]['name'] + " " #['location']['display_address'])
                         html += "</a><br>"
                         html += "<h2>"+"<img src=" + "'" + str(query_res['businesses'][attr_counter]["image_url"]) + "'" + "align='left'" + "width='280'" + "height='280'>" + "</h2>" 
                         html += "Location: <br>"
@@ -231,7 +231,7 @@ def submit():
 
                         w = str(query_res['businesses'][attr_counter]["url"])
                         html += "<div style='background-color:Black;color:white;font-size:30px'> "
-                        html += "<a href=" +"'"+w + "'>"  + str(i) + ". " + query_res['businesses'][attr_counter]['name'] + " " #['location']['display_address'])
+                        html += "<a href=" + "'"+ w + "'" + "style='color:white;'" + ">"+ str(i) + ". " + query_res['businesses'][attr_counter]['name'] + " " #['location']['display_address'])
                         html += "</a><br>"
                         html += "<h2>"+"<img src=" + "'" + str(query_res['businesses'][attr_counter]["image_url"]) + "'" + "align='left'" + "width='280'" + "height='280'>" + "</h2>" 
                         html += "Location: <br>"
