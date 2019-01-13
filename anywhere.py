@@ -43,6 +43,18 @@ def submit():
         loc = request.form.get('loc')
         num_hrs = int(request.form.get('num_hrs'))
         tot_num_hrs = num_hrs
+        price = int(request.form.get('price'))
+        price_str = ''
+
+        if (price == 1):
+        	price_str = "1"
+        elif (price == 2):
+        	price_str = "1, 2"
+        elif (price == 3):
+        	price_str = "1, 2, 3"
+        else:
+        	price_str = "1, 2, 3, 4"
+
         #query = request.form['query']
         #year = request.form['year']
         #month = request.form['month']
@@ -54,7 +66,7 @@ def submit():
         #num_act = int(request.form['num_act'])
         num_act = (abs(tot_num_hrs - num_meals) / 2.5)
         query_res = yelp_api.search_query(term = "activities", location = loc, limit=50) # max value for limit
-        food_query = yelp_api.search_query(term = "food", location = loc, limit=50)
+        food_query = yelp_api.search_query(term = "food", location = loc, limit=50, price=price_str)
 
         #print(query_res['businesses'])# [20]) #['coordinates'])
         result_string = ''
