@@ -56,7 +56,7 @@ def submit():
 		
         for i in range(num_act):
             html += "<p style='background-color:DodgerBlue;font-size:30px'> "
-            html += query_res['businesses'][i]['name'] #['location']['display_address'])
+            html += query_res['businesses'][i]['name'] + "" #['location']['display_address'])
             html += "</p>"
             html += "Location: <br>"
             for j in range(len(query_res['businesses'][i]['location']['display_address'])):
