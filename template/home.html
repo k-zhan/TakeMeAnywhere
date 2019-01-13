@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Flask Tutorial</title>
+    <title>TakeMeAnywhere</title>
   </head>
   <style>
   body{
@@ -23,21 +23,32 @@
   }
   </style>
   <form method="POST">
-    <h1>Events Generation!</h1>
-      <p> Number Of Hours Out?</p>
-      <input name = "num_hrs"><br>
-      <p> How Many Attractions To Visit?</p>
-      <input name = "num_act"><br>
-      <input type="checkbox" name="vehicle1" value="Bike">Do You Want To Eat?
-      <p>Location</p>
-      <input name = "loc"><br>
-      <p>Pricing</p>
+    <h1 >TakeMeAnywhere</h1><br>
+      <h2> Number Of Hours Out?</h2>
+      <select method = "POST",id = "hrList">
+          <option value = "1">1</option>
+          <option value = "2">2</option>
+          <option value = "3">3</option>
+          <option value = "4">4</option>
+          <option value = "5">5</option>
+          <option value = "6">6</option>
+          <option value = "7">7</option>
+          <option value = "8">8</option>
+          <option value = "9">9</option>
+          <option value = "10">10</option>
+          <option value = "11">11</option>
+          <option value = "12">12</option>
+          <option value = "13">13</option>
+        </select>
+      <h2>Location</h2>
+      <input value="Waterloo,ON" name = "loc"><br>
+      <h2>Food Pricing</h2>
   <select method = "POST",id = "myList">
     <option value = "1">$</option>
     <option value = "2">$$</option>
     <option value = "3">$$$</option>
     <option value = "4">$$$$</option>
-  </select><br>
+  </select><br><br>
   <input type= "submit">
   </form>
   </body>
