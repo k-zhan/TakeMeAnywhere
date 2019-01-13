@@ -56,7 +56,7 @@ def submit():
 		
         for i in range(num_act):
             html += "<p style='background-color:DodgerBlue;font-size:30px'> "
-            html += query_res['businesses'][i]['name'] + "" #['location']['display_address'])
+            html += query_res['businesses'][i]['name'] + " " #['location']['display_address'])
             html += "</p>"
             html += "Location: <br>"
             for j in range(len(query_res['businesses'][i]['location']['display_address'])):
@@ -87,8 +87,6 @@ def submit():
                                                      avoid="ferries",
                                                      departure_time=time_counter
                                                     )
-            print(directions_result[0]['legs'][0]['duration']['text'])
-            print(directions_result[0]['legs'][0]['distance']['text'])
             html += "Travel Time: " + str(directions_result[0]['legs'][0]['duration']['text']) + " "
             html += "Distance: " + str(directions_result[0]['legs'][0]['distance']['text'])
             html += "<br>"
